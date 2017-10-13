@@ -1,0 +1,157 @@
+@font-face {
+  font-family: 'roboto';
+  src: url('./fonts/Roboto-Light.woff2') format('woff2'),
+    url('./fonts/Roboto-Light.woff') format('woff'),
+    url('./fonts/Roboto-Light.ttf') format('truetype');
+  /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5, Android 2.2+,  */
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+/* TAG */
+.tag {
+  /* Tag */
+  position: relative;
+  height: 20px;
+  background: #2d9cdb;
+  border-radius: 10px;
+  padding: 0px 10px;
+  display: inline-block;
+  margin: 0px 5px;
+}
+.tag .text {
+  position: relative;
+  top: 13.04%;
+  bottom: 0%;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 12px;
+  text-align: center;
+
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* TAG LIST */
+.tag-list {
+  position: relative;
+  /* width: 196px; */
+  height: 30px;
+}
+
+/* CALENDAR DATE */
+.calendar-date {
+  /* Date */
+  position: relative;
+  width: 114px;
+  height: 27px;
+}
+
+/* icon */
+.calendar-date .icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 4px;
+  top: calc(50% - 20px/2 - 0.5px);
+
+  background: url('./images/calendar-icon.png');
+}
+/* dateText */
+.calendar-date .text {
+  position: absolute;
+  width: 64px;
+  height: 15px;
+  right: 17px;
+  top: calc(50% - 15px/2);
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 12px;
+
+  color: #ffffff;
+}
+
+/* CARD */
+.card {
+  position: relative;
+  width: 379px;
+  height: 235px;
+
+  background: rgba(45, 156, 219, 0.34);
+}
+
+/* header */
+.card .header {
+  position: absolute;
+  height: 63px;
+  left: 3.75%;
+  right: 3.46%;
+  top: 14px;
+}
+
+.card .header .author {
+  position: absolute;
+  width: 159px;
+  height: 63px;
+  left: 0px;
+  top: 0px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 24px;
+
+  color: #ffffff;
+}
+
+.card .header .icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: -0.31px;
+  top: 0px;
+
+  background: url('./images/edit-icon.png');
+}
+
+/* excerpt */
+.card .excerpt {
+  position: absolute;
+  height: 95px;
+  left: 3.85%;
+  right: 3.59%;
+  top: 77px;
+}
+
+/* footer */
+.card .footer {
+  position: absolute;
+  height: 33px;
+  left: 0%;
+  right: 0%;
+  top: 202px;
+
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.card .footer .calendar-date {
+  left: 4px;
+  display: inline-block;
+  top: 3px;
+}
+
+.card .footer .tag-list {
+  position: absolute;
+  height: 33px;
+  right: 0px;
+  top: 3px;
+  text-align: right;
+}

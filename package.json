@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "0.16.1",
+    "file-loader": "^1.1.5",
+    "prop-types": "^15.6.0",
     "react": "15.5.4",
     "react-dom": "15.5.4"
   },
@@ -12,9 +14,9 @@
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addon-links": "^3.2.6",
     "@storybook/react": "^3.2.8",
+    "babel-eslint": "7.2.3",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
-    "babel-eslint": "7.2.3",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
     "eslint-plugin-import": "2.2.0",
