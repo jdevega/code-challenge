@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/node/Dockerfile
+    volumes:
+      - .:/var/app/
+    working_dir: /var/app
+    command: bash -c "cd ./server && yarn && yarn start"
+    links:
+      - mongo
+    ports:
+      - "4000:4000"
+
+  client:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/node/Dockerfile
+    volumes:
+      - .:/var/app/
+    working_dir: /var/app
+    command: bash -c "yarn && yarn start"
+    links:
+      - server
+    ports:
+      - "3000:3000"
+
+  mongo:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/mongo/Dockerfile
+    ports:
+      - "27017:27017"
+  
+  maqueta:
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/node/Dockerfile
+    volumes:
+      - .:/var/app/
+    working_dir: /var/app
+    command: bash -c "yarn && yarn run maqueta"
+    ports:
+      - "6006:6006"
