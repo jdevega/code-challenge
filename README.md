@@ -11,6 +11,12 @@ Once you have done your code challenge send us your github repository link to [d
 
 ## Configuration
 
+### Using docker-compose
+
+You can use docker-compose to run all the services at once. First install [docker-compose](https://docs.docker.com/compose/install) and then run ```docker-compose up client```.
+
+### Alternative
+
 In this project you will find two different configurations; client and server. We are going to explain step by step how you can set this project.
 
 Fork the repo from this link and clone this project into your desired folder.
@@ -36,7 +42,9 @@ cd ..
 yarn
 yarn start
 ```
-And that's all! You will have everything running so you can go ahead to `http://localhost:3000` and proceed with the code challenge.
+
+
+And that's all! Regardless of the mode you have used, you can go ahead to `http://localhost:3000` and proceed with the code challenge.
 
 ## Exercises
 
