@@ -7,7 +7,9 @@
     "file-loader": "^1.1.5",
     "prop-types": "^15.6.0",
     "react": "15.5.4",
-    "react-dom": "15.5.4"
+    "react-dom": "15.5.4",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.74.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",

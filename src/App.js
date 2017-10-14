@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import request from './request';
 import { ARTICLES_QUERY } from './queries';
+import AppLayout from './ui/layout/App';
+import Articles from './ui/screens/Articles';
 
 class App extends Component {
   // definition
@@ -20,11 +22,11 @@ class App extends Component {
 
   // Renders
   render() {
+    const { articles } = this.state;
     return (
-      <div className="App">
-        <h2>Billin code challenge</h2>
-        <pre>{JSON.stringify(this.state.articles, null, 2)}</pre>
-      </div>
+      <AppLayout>
+        <Articles items={articles} />
+      </AppLayout>
     );
   }
 }
