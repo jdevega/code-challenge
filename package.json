@@ -5,9 +5,18 @@
   "dependencies": {
     "axios": "0.16.1",
     "file-loader": "^1.1.5",
+    "history": "^4.7.2",
     "prop-types": "^15.6.0",
+    "ramda": "^0.25.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.6",
+    "recompose": "^0.26.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.74.2"
   },

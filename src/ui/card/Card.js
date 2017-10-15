@@ -11,10 +11,10 @@ const Card = props => (
     <UICard.Content>
       <UICard.Description>{props.excerpt}</UICard.Description>
     </UICard.Content>
-    <UICard.Content extra onClick={props.onEditClick}>
+    <UICard.Content extra>
       <div className="ui two buttons">
-        <AnimatedButton icon="eye" text="View" color="green" />
-        <AnimatedButton icon="pencil" text="Edit" color="blue" />
+        <AnimatedButton icon="eye" text="View" color="green" onClick={props.onViewClick} />
+        <AnimatedButton icon="pencil" text="Edit" color="blue" onClick={props.onEditClick} />
       </div>
     </UICard.Content>
   </UICard>
@@ -29,6 +29,7 @@ Card.propTypes = {
   author: PropTypes.string.isRequired,
   excerpt: PropTypes.string.isRequired,
   onEditClick: PropTypes.func.isRequired,
+  onViewClick: PropTypes.func.isRequired,
 };
 
 export default Card;

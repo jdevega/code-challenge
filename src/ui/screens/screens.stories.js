@@ -13,4 +13,4 @@ const articles = [
 ];
 
 storiesOf('UI/Screens', module)
-  .add('Articles', () => <Articles items={articles} />);
+  .add('Articles', () => <Articles articles={articles} />);
