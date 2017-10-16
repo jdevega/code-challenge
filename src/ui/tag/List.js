@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container } from 'semantic-ui-react';
-import { TEXT_ALIGN } from '../constants';
+import { Label } from 'semantic-ui-react';
 
-const List = props => <Container textAlign={props.textAlign}>
+const List = props => <Label.Group tag color="blue" >
   {props.children}
-</Container>;
+</Label.Group>;
 
 List.defaultProps = {
   textAlign: 'left',
@@ -13,7 +12,6 @@ List.defaultProps = {
 
 List.propTypes = {
   children: PropTypes.oneOfType[(PropTypes.element, PropTypes.array)],
-  textAlign: PropTypes.oneOf(TEXT_ALIGN),
 };
 
 export default List;
