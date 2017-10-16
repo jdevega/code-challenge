@@ -1,33 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withProps } from 'recompose';
 import { Label } from 'semantic-ui-react';
 
-const PublishedLabel = props => {
-  const _props = {
-    true: {
-      icon: 'checkmark',
-      text: 'Published',
-      color: 'green',
-    },
-    false: {
-      icon: 'x',
-      text: 'Not Published',
-      color: 'red',
-    },
-  }[props.published];
-  return (
-    <Label icon={_props.icon} color={_props.color}>
-      {_props.text}
-    </Label>
-  );
-};
+const enhanceLabelProps = withProps(props => ({
+  true: {
+    icon: 'checkmark',
+    text: 'Published',
+    color: 'green',
+  },
+  false: {
+    icon: 'x',
+    text: 'Not Published',
+    color: 'red',
+  },
+}[props.published]));
+
+const PublishedLabel = props =>
+  <Label icon={props.icon} color={props.color} content={props.text} />;
 
 PublishedLabel.defaultProps = {
-  published: false,
+  color: 'green',
+  icon: 'checkmark',
+  text: 'Published',
 };
 
 PublishedLabel.propTypes = {
-  published: PropTypes.bool.isRequired,
+  color: PropTypes.oneOf(['green', 'red']).isRequired,
+  icon: PropTypes.oneOf(['checkmark', 'x']).isRequired,
+  text: PropTypes.string.isRequired,
 };
 
-export default PublishedLabel;
+export default enhanceLabelProps(PublishedLabel);
