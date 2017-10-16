@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Header, Container, Divider, Label, Grid } from 'semantic-ui-react';
+import { Header, Label, Grid } from 'semantic-ui-react';
 import TagList from '../tag/List';
 import Tag from '../tag/Tag';
 
@@ -36,13 +36,14 @@ Article.defaultProps = {
   tags: [],
   content:
     'Curabitur sit amet diam in ex condimentum tincidunt quis ac justo. Nam posuere velit non urna efficitur, eget placerat neque varius. Suspendisse aliquam diam quis egestas rhoncus. Praesent tempor leo id tellus molestie finibus. Cras pretium volutpat metus et malesuada. Aliquam a ullamcorper leo, ut malesuada dolor. Pellentesque hendrerit imperdiet blandit. Duis neque erat, gravida eu lacus a, vulputate viverra ipsum. Integer arcu eros, pulvinar sit amet mi a, fermentum placerat nibh. Quisque at risus vulputate, aliquam dui sed, scelerisque libero. Donec eget ultricies velit. Proin ullamcorper consectetur sapien, non finibus augue facilisis eu.',
+  published: false,
 };
 
 Article.propTypes = {
   author: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  published: PropTypes.string.isRequired,
+  // id: PropTypes.string.isRequired,
+  published: PropTypes.bool.isRequired,
   tags: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
