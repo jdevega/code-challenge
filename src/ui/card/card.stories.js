@@ -4,7 +4,8 @@ import { action } from '@storybook/addon-actions';
 import Card from './Card';
 import Group from './Group';
 
-const excerpt = 'Ut pharetra, nulla vitae lobortis venenatis, justo dui congue arcu, ut iaculis est dui id leo. Vivamus eu tortor vel massa efficitur fermentum. Nunc justo justo, molestie at vulputate quis, lacinia id nisl. Mauris quis quam et dolor fringilla ullamcorper. Morbi accumsan velit a turpis vulputate, non mollis nisi tincidunt';
+const excerpt =
+  'Ut pharetra, nulla vitae lobortis venenatis, justo dui congue arcu, ut iaculis est dui id leo. Vivamus eu tortor vel massa efficitur fermentum. Nunc justo justo, molestie at vulputate quis, lacinia id nisl. Mauris quis quam et dolor fringilla ullamcorper. Morbi accumsan velit a turpis vulputate, non mollis nisi tincidunt';
 const cards = [
   { author: 'Author 1', excerpt },
   { author: 'Author 2', excerpt },
@@ -15,5 +16,7 @@ const cards = [
 ];
 
 storiesOf('UI/Card', module)
-.add('Card', () => <Card onEditClick={action('Card: onEditClick')} />)
-.add('Group', () => <Group>{cards.map(props => <Card key={props.author} {...props} />)}</Group>);
+  .add('Card', () => (
+    <Card onEditClick={action('Card: onEditClick')} onViewClick={action('Card: onViewClick')} />
+  ))
+  .add('Group', () => <Group>{cards.map(props => <Card key={props.author} {...props} />)}</Group>);

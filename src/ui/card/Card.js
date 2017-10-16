@@ -23,6 +23,8 @@ const Card = props => (
 Card.defaultProps = {
   author: 'Author name',
   excerpt: 'Excerpt',
+  onEditClick: e => e.preventDefault(),
+  onViewClick: e => e.preventDefault(),
 };
 
 Card.propTypes = {

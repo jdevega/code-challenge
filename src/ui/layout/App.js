@@ -6,16 +6,15 @@ import Footer from './Footer';
 
 const App = props => (
   <div>
-    <Header />
-    <Container style={{ marginTop: '7em' }}>
-      {props.children}
-    </Container>
+    <Header menuItems={props.menuItems} />
+    <Container style={{ marginTop: '7em' }}>{props.children}</Container>
     <Footer />
   </div>
 );
 
 App.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  menuItems: PropTypes.arrayOf(PropTypes.element),
 };
 
 export default App;

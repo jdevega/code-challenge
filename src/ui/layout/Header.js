@@ -1,22 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Menu, Container, Image } from 'semantic-ui-react';
 import Logo from '../../../public/logo.png';
-import withHomeLink from '../../links/withHomeLink';
+// import withHomeLink from '../../links/withHomeLink';
 
-const MenuItemHome = withHomeLink(Menu.Item);
-const Header = () =>
+// const MenuItemHome = withHomeLink(Menu.Item);
+const Header = props => (
   <Menu fixed="top" inverted color="blue">
     <Container>
       <Menu.Item as="a" header>
-        <Image
-          size="mini"
-          src={Logo}
-          style={{ marginRight: '1.5em' }}
-        />
+        <Image size="mini" src={Logo} style={{ marginRight: '1.5em' }} />
         Code Challenge
       </Menu.Item>
-      <MenuItemHome as="a">Articles</MenuItemHome>
+      {props.menuItems}
     </Container>
-  </Menu>;
+  </Menu>
+);
+
+Header.propTypes = {
+  menuItems: PropTypes.arrayOf(PropTypes.element),
+};
 
 export default Header;

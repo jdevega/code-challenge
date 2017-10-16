@@ -10,9 +10,9 @@ import AppLayout from './ui/layout/App';
 import Articles from './ui/screens/Articles';
 import ViewArticle from './ui/screens/ViewArticle';
 import EditArticle from './ui/screens/EditArticle';
-import withLoader from './articles/withLoader';
+import withEnhancedCards from './articles/withEnhancedCards';
 
-const ArticlesWithLoader = withLoader(Articles);
+const ArticlesWithLoader = withEnhancedCards(Articles);
 
 const router = (
   <Provider store={store}>
@@ -28,7 +28,4 @@ const router = (
   </Provider>
 );
 
-ReactDOM.render(
-  router,
-  document.getElementById('root'),
-);
+ReactDOM.render(router, document.getElementById('root'));
