@@ -1,10 +1,4 @@
-import {
-  GraphQLBoolean,
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLList,
-  GraphQLSchema,
-} from 'graphql';
+import { GraphQLBoolean, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLSchema } from 'graphql';
 import db from './db';
 
 const articleType = new GraphQLObjectType({
@@ -43,6 +37,18 @@ const Query = new GraphQLObjectType({
       type: new GraphQLList(articleType),
       resolve() {
         return db.Article.find();
+      },
+    },
+    article: {
+      type: articleType,
+      args: {
+        id: {
+          description: 'Id of the Article',
+          type: GraphQLString,
+        },
+      },
+      resolve(root, filter) {
+        return db.Article.findOne({ _id: filter.id });
       },
     },
   }),
