@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Header, Divider } from 'semantic-ui-react';
 import { Group } from '../card';
-// import withLinks from '../../articles/withLinks';
-
-// const CardWithLinks = withLinks(Card);
 
 const Articles = props => (
   <div>
