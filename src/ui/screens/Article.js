@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Header, Label, Grid } from 'semantic-ui-react';
+import { Header, Grid } from 'semantic-ui-react';
+import PublishedLabel from '../common/PublishedLabel';
 import TagList from '../tag/List';
 import Tag from '../tag/Tag';
 
@@ -24,7 +25,7 @@ const Article = props => (
         <TagList>{props.tags.map(tag => <Tag key={tag} text={tag} />)}</TagList>
       </Grid.Column>
       <Grid.Column textAlign="right">
-        <Label>{props.published}</Label>
+        <PublishedLabel published={props.published} />
       </Grid.Column>
     </Grid.Row>
   </Grid>
@@ -42,9 +43,8 @@ Article.defaultProps = {
 Article.propTypes = {
   author: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  // id: PropTypes.string.isRequired,
   published: PropTypes.bool.isRequired,
-  tags: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   title: PropTypes.string.isRequired,
 };
 
