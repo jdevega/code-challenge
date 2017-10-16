@@ -6,12 +6,8 @@ const List = props => <Label.Group tag color="blue" >
   {props.children}
 </Label.Group>;
 
-List.defaultProps = {
-  textAlign: 'left',
-};
-
 List.propTypes = {
-  children: PropTypes.oneOfType[(PropTypes.element, PropTypes.array)],
+  children: PropTypes.arrayOf(PropTypes.element),
 };
 
 export default List;
