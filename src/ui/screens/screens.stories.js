@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { array } from '@storybook/addon-knobs';
 import Articles from './Articles';
+import Article from './Article';
 import Card from '../card/Card';
 
 const excerpt =
@@ -16,4 +18,6 @@ const articles = [
 
 const cards = articles.map(article => <Card key={article.id} {...article} />);
 
-storiesOf('UI/Screens', module).add('Articles', () => <Articles articles={cards} />);
+storiesOf('UI/Screens', module)
+  .add('Articles', () => <Articles articles={cards} />)
+  .add('Article', () => <Article tags={array('tags', ['tag 1', 'tag 2'])} />);
