@@ -1,9 +1,6 @@
-import { propOr } from 'ramda';
+import { propOr, prop } from 'ramda';
 import { DOMAIN } from './constants';
 
 const root = propOr({}, DOMAIN);
-export const getAll = state => {
-  const articles = propOr([], 'items')(root(state));
-  return { articles };
-}
-;
+export const getAll = state => propOr([], 'list')(root(state));
+export const getOne = state => prop('item', root(state));
