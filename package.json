@@ -16,6 +16,7 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
+    "redux-form": "^7.1.1",
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.74.2"

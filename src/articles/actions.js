@@ -18,3 +18,10 @@ export const findAll = () => dispatch => {
 export const findOne = id => dispatch => {
   request(ARTICLE_QUERY, { id }).then(response => dispatch(setOne(response)));
 };
+
+export const createArticle = values => () =>
+  console.log(values);
+
+export const editArticle = values => () =>
+  console.log(values)
+;
