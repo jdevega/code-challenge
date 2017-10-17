@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input as InputComponent } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 
-const Input = ({ input, required, meta: { touched, error }, ...rest }) => (
-  <Form.Field error={!!(touched && error)} required={required}>
-    <InputComponent required={required} {...input} {...rest} />
+const Input = ({ input, required, meta: { touched, error }, label, placeholder, ...rest }) => (
+  <Form.Field >
+    <Form.Input
+      error={!!(touched && error)}
+      required={required}
+      label={label}
+      placeholder={placeholder} {...input} {...rest}
+    />
     {touched && error ? <span style={{ color: '#9F3A38' }}>{error}</span> : null}
   </Form.Field>
 );
