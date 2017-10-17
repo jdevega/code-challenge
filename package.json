@@ -24,6 +24,7 @@
     "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-knobs": "^3.2.8",
     "@storybook/addon-links": "^3.2.6",
+    "@storybook/addon-storyshots": "^3.2.12",
     "@storybook/react": "^3.2.8",
     "babel-eslint": "7.2.3",
     "enzyme": "^3.0.0",
@@ -34,7 +35,7 @@
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-react": "6.10.3",
     "react-scripts": "0.9.5",
-    "react-test-renderer": "^16.0.0",
+    "react-test-renderer": "^15.0.0",
     "redux-devtools-extension": "^2.13.2",
     "storybook-addon-smart-knobs": "^3.0.1"
   },

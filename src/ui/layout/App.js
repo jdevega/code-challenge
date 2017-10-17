@@ -13,7 +13,7 @@ const App = props => (
 );
 
 App.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.node,
   menuItems: PropTypes.arrayOf(PropTypes.element),
 };
 

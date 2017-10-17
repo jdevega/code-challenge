@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Container, Image } from 'semantic-ui-react';
 import Logo from '../../../public/logo.png';
-// import withHomeLink from '../../links/withHomeLink';
 
-// const MenuItemHome = withHomeLink(Menu.Item);
 const Header = props => (
   <Menu fixed="top" inverted color="blue">
     <Container>
