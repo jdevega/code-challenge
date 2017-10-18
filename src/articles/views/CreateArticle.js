@@ -2,11 +2,11 @@ import React from 'react';
 import { Divider, Header } from 'semantic-ui-react';
 import ArticleForm from '../form/ArticleForm';
 import withForm from '../../forms/withForm';
-import { editArticle } from '../actions';
+import { createArticle } from '../actions';
 
 const CreateArticleForm = withForm({
   title: 'Create Article',
-  actions: { editArticle },
+  actions: { createArticle },
   onSubmit: (values, dispatch, props) => props.createArticle(values),
 })(ArticleForm);
 
