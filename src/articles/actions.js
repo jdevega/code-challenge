@@ -45,12 +45,14 @@ const parseValues = values => ({
 
 export const createArticle = values => dispatch => {
   const article = parseValues(values);
-  request(Queries.CREATE_ARTICLE_MUTATION, { article }).then(response => dispatch(addOne(response)));
+  request(Queries.CREATE_ARTICLE_MUTATION, { article })
+    .then(response => dispatch(addOne(response)));
 };
 
 export const editArticle = values => dispatch => {
   const article = parseValues(values);
-  request(Queries.UPDATE_ARTICLE_MUTATION, { article }).then(response => dispatch(updateOne(response)));
+  request(Queries.UPDATE_ARTICLE_MUTATION, { article })
+    .then(response => dispatch(updateOne(response)));
 };
 
 export const deleteArticle = id => dispatch => {
