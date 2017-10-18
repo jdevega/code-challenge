@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { mapProps } from 'recompose';
 import { Form, Checkbox } from 'semantic-ui-react';
 
-const Input = ({ input, meta, label }) => (
+const valueToBoolean = mapProps(props => ({
+  ...props,
+  input: { ...props.input, value: !!props.input.value },
+}));
+
+const CheckboxField = ({ input, meta, label }) => (
   <Form.Field>
     <Checkbox
-      error={!!(meta.touched && meta.error)}
       label={label}
       checked={!!input.value}
       onClick={(e, state) => input.onChange(state.checked)}
@@ -14,16 +19,16 @@ const Input = ({ input, meta, label }) => (
   </Form.Field>
 );
 
-Input.defaultProps = {
-  input: {},
+CheckboxField.defaultProps = {
+  input: { value: false },
   meta: {},
   label: 'Field label',
 };
 
-Input.propTypes = {
+CheckboxField.propTypes = {
   input: PropTypes.shape({
     name: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.bool,
   }).isRequired,
   label: PropTypes.string.isRequired,
   meta: PropTypes.shape({
@@ -32,4 +37,4 @@ Input.propTypes = {
   }).isRequired,
 };
 
-export default Input;
+export default valueToBoolean(CheckboxField);

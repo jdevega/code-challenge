@@ -2,20 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'semantic-ui-react';
 
-const Input = ({ input, meta, label, placeholder }) => (
+const Input = props => (
   <Form.Field>
     <Form.Input
-      error={!!(meta.touched && meta.error)}
-      label={label}
-      placeholder={placeholder}
-      {...input}
+      error={!!(props.meta.touched && props.meta.error)}
+      label={props.label}
+      placeholder={props.placeholder}
+      {...props.input}
     />
-    {meta.touched && meta.error ? <span style={{ color: '#9F3A38' }}>{meta.error}</span> : null}
+    {props.meta.touched && props.meta.error ? (
+      <span style={{ color: '#9F3A38' }}>{props.meta.error}</span>
+    ) : null}
   </Form.Field>
 );
 
 Input.defaultProps = {
-  input: {},
+  input: { value: '' },
   meta: {},
   label: 'Field label',
   placeholder: 'Field placeholder',
@@ -24,7 +26,7 @@ Input.defaultProps = {
 Input.propTypes = {
   input: PropTypes.shape({
     name: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   }).isRequired,
   label: PropTypes.string.isRequired,
   meta: PropTypes.shape({
