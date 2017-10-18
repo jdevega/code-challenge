@@ -1,4 +1,4 @@
-import { ARTICLES_QUERY, ARTICLE_QUERY } from './queries';
+import * as Queries from './queries';
 import * as ActionTypes from './actionTypes';
 import request from '../request';
 
@@ -12,29 +12,47 @@ export const setOne = article => ({
   payload: article,
 });
 
+export const addOne = article => ({
+  type: ActionTypes.ADD_ONE,
+  payload: article,
+});
+
+export const updateOne = article => ({
+  type: ActionTypes.UPDATE_ONE,
+  payload: article,
+});
+
+export const deleteOne = id => ({
+  type: ActionTypes.DELETE_ONE,
+  payload: id,
+});
+
+
 export const findAll = () => dispatch => {
-  request(ARTICLES_QUERY).then(response => dispatch(setAll(response)));
+  request(Queries.ARTICLES_QUERY).then(response => dispatch(setAll(response)));
 };
 export const findOne = id => dispatch => {
-  request(ARTICLE_QUERY, { id }).then(response => dispatch(setOne(response)));
+  request(Queries.ARTICLE_QUERY, { id }).then(response => dispatch(setOne(response)));
 };
 
-const arrayToCSV = values => (values ? values.map(value => value.trim()).join(',') : undefined);
 
-export const createArticle = values => () => {
-  const article = {
-    ...values,
-    tags: arrayToCSV(values.tags),
-  };
+const trimElements = values => (values ? values.map(value => value.trim()) : undefined);
+const parseValues = values => ({
+  ...values,
+  excerpt: values.content.slice(0, 350),
+  tags: trimElements(values.tags),
+});
 
-  console.log(article);
+export const createArticle = values => dispatch => {
+  const article = parseValues(values);
+  request(Queries.CREATE_ARTICLE_MUTATION, { article }).then(response => dispatch(addOne(response)));
 };
 
-export const editArticle = values => () => {
-  const article = {
-    ...values,
-    tags: arrayToCSV(values.tags),
-  };
+export const editArticle = values => dispatch => {
+  const article = parseValues(values);
+  request(Queries.UPDATE_ARTICLE_MUTATION, { article }).then(response => dispatch(updateOne(response)));
+};
 
-  console.log(article);
+export const deleteArticle = id => dispatch => {
+  request(Queries.DELETE_ARTICLE_MUTATION, { id }).then(() => dispatch(deleteOne(id)));
 };

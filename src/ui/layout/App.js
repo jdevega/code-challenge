@@ -1,15 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import Header from './Header';
 import Footer from './Footer';
 
 const App = props => (
-  <div>
-    <Header menuItems={props.menuItems} />
-    <Container style={{ marginTop: '7em' }}>{props.children}</Container>
+  <Grid divided="vertically">
+    <Grid.Row>
+      <Header menuItems={props.menuItems} />
+    </Grid.Row>
+    <Grid.Row>
+      <div
+        style={{ width: '90%',
+          marginTop: '3em',
+          marginLeft: '5%' }}
+      >{props.children}</div>
+    </Grid.Row>
     <Footer />
-  </div>
+  </Grid>
 );
 
 App.propTypes = {

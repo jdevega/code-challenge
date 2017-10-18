@@ -6,29 +6,31 @@ import TagList from '../tag/List';
 import Tag from '../tag/Tag';
 
 const Article = props => (
-  <Grid divided="vertically">
-    <Grid.Row columns={2}>
-      <Grid.Column>
-        <Header as="h2">{props.title}</Header>
-      </Grid.Column>
-      <Grid.Column textAlign="right">
-        <Header as="h3" floated="right">
-          {props.author}
-        </Header>
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={1}>
-      <Grid.Column>{props.content}</Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={2}>
-      <Grid.Column width={11}>
-        <TagList>{props.tags.map(tag => <Tag key={tag} text={tag} />)}</TagList>
-      </Grid.Column>
-      <Grid.Column width={5} textAlign="right">
-        <PublishedLabel published={props.published} />
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
+  <div >
+    <Grid divided="vertically">
+      <Grid.Row columns={2}>
+        <Grid.Column>
+          <Header as="h2">{props.title}</Header>
+        </Grid.Column>
+        <Grid.Column textAlign="right">
+          <Header as="h3" floated="right">
+            {props.author}
+          </Header>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row columns={1}>
+        <Grid.Column>{props.content}</Grid.Column>
+      </Grid.Row>
+      <Grid.Row columns={2}>
+        <Grid.Column width={11}>
+          <TagList>{props.tags.map(tag => <Tag key={tag} text={tag} />)}</TagList>
+        </Grid.Column>
+        <Grid.Column width={5} textAlign="right">
+          <PublishedLabel published={props.published} />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  </div>
 );
 
 Article.defaultProps = {
