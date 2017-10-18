@@ -40,6 +40,7 @@ const articleType = new GraphQLObjectType({
 const articleInputType = new GraphQLInputObjectType({
   name: 'ArticleInput',
   fields: () => ({
+    id: { type: GraphQLString },
     author: { type: new GraphQLNonNull(GraphQLString) },
     title: { type: new GraphQLNonNull(GraphQLString) },
     content: { type: GraphQLString },
@@ -92,7 +93,7 @@ const Mutation = new GraphQLObjectType({
       args: {
         article: { type: articleInputType },
       },
-      resolve: (value, { article }) => db.Article.findOneAndUpdate(article),
+      resolve: (value, { article }) => db.Article.findOneAndUpdate({ _id: article.id }, article),
     },
     deleteArticle: {
       type: articleType,
@@ -100,7 +101,7 @@ const Mutation = new GraphQLObjectType({
       args: {
         id: { type: GraphQLString },
       },
-      resolve: (value, { id }) => db.Article.remove({ id }),
+      resolve: (value, { id }) => db.Article.remove({ _id: article.id }),
     },
   }),
 });
