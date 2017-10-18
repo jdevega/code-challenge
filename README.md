@@ -15,6 +15,8 @@ Once you have done your code challenge send us your github repository link to [d
 
 You can use docker-compose to run all the services at once. First install [docker-compose](https://docs.docker.com/compose/install) and then run ```docker-compose up client```.
 
+If your want to ckeck the components available, run ```docker-compose up maqueta``` and navigate to `http://localhost:6006`.
+
 ### Alternative
 
 In this project you will find two different configurations; client and server. We are going to explain step by step how you can set this project.

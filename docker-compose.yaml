@@ -7,6 +7,8 @@ services:
       dockerfile: ./dockerfiles/node/Dockerfile
     volumes:
       - .:/var/app/
+    environment:
+      - MONGO_SERVER=mongo
     working_dir: /var/app
     command: bash -c "cd ./server && yarn && yarn start"
     links:
