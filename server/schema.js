@@ -93,7 +93,8 @@ const Mutation = new GraphQLObjectType({
       args: {
         article: { type: articleInputType },
       },
-      resolve: (value, { article }) => db.Article.findOneAndUpdate({ _id: article.id }, article),
+      resolve: (value, { article }) =>
+        db.Article.findOneAndUpdate({ _id: article.id }, article, { new: true }).then(doc => doc),
     },
     deleteArticle: {
       type: articleType,
@@ -101,7 +102,7 @@ const Mutation = new GraphQLObjectType({
       args: {
         id: { type: GraphQLString },
       },
-      resolve: (value, { id }) => db.Article.remove({ _id: article.id }),
+      resolve: (value, { id }) => db.Article.remove({ _id: id }),
     },
   }),
 });
