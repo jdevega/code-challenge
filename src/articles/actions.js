@@ -19,9 +19,22 @@ export const findOne = id => dispatch => {
   request(ARTICLE_QUERY, { id }).then(response => dispatch(setOne(response)));
 };
 
-export const createArticle = values => () =>
-  console.log(values);
+const arrayToCSV = values => (values ? values.map(value => value.trim()).join(',') : undefined);
 
-export const editArticle = values => () =>
-  console.log(values)
-;
+export const createArticle = values => () => {
+  const article = {
+    ...values,
+    tags: arrayToCSV(values.tags),
+  };
+
+  console.log(article);
+};
+
+export const editArticle = values => () => {
+  const article = {
+    ...values,
+    tags: arrayToCSV(values.tags),
+  };
+
+  console.log(article);
+};

@@ -4,7 +4,7 @@ import { Form } from 'semantic-ui-react';
 
 const Input = ({ input, meta, label, placeholder }) => (
   <Form.Field>
-    <Form.Input
+    <Form.TextArea
       error={!!(meta.touched && meta.error)}
       label={label}
       placeholder={placeholder}

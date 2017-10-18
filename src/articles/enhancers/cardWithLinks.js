@@ -7,5 +7,4 @@ export default compose(
     onEditClick: props => () => props.history.push(`/edit/${props.id}`),
     onViewClick: props => () => props.history.push(`/${props.id}`),
   }),
-)
-;
+);

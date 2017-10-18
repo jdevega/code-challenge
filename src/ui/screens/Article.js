@@ -21,10 +21,10 @@ const Article = props => (
       <Grid.Column>{props.content}</Grid.Column>
     </Grid.Row>
     <Grid.Row columns={2}>
-      <Grid.Column>
+      <Grid.Column width={11}>
         <TagList>{props.tags.map(tag => <Tag key={tag} text={tag} />)}</TagList>
       </Grid.Column>
-      <Grid.Column textAlign="right">
+      <Grid.Column width={5} textAlign="right">
         <PublishedLabel published={props.published} />
       </Grid.Column>
     </Grid.Row>

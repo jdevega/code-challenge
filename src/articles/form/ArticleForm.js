@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'semantic-ui-react';
-import SubmitButton from '../form/SubmitButton';
+import SubmitButton from '../../ui/form/SubmitButton';
 import withReduxField from '../../forms/withReduxField';
-import Input from './Input';
-import TextArea from './TextArea';
-import Checkbox from './Checkbox';
+import Input from '../../ui/form/Input';
+import TextArea from '../../ui/form/TextArea';
+import Checkbox from '../../ui/form/Checkbox';
 
 const ConnectedInput = withReduxField(Input);
 const ConnectedTextArea = withReduxField(TextArea);

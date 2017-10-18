@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form } from 'semantic-ui-react';
+import { Form, Checkbox } from 'semantic-ui-react';
 
-const Input = ({ input, meta, label, placeholder }) => (
+const Input = ({ input, meta, label }) => (
   <Form.Field>
-    <Form.Input
+    <Checkbox
       error={!!(meta.touched && meta.error)}
       label={label}
-      placeholder={placeholder}
-      {...input}
+      checked={!!input.value}
+      onClick={(e, state) => input.onChange(state.checked)}
     />
     {meta.touched && meta.error ? <span style={{ color: '#9F3A38' }}>{meta.error}</span> : null}
   </Form.Field>
@@ -18,7 +18,6 @@ Input.defaultProps = {
   input: {},
   meta: {},
   label: 'Field label',
-  placeholder: 'Field placeholder',
 };
 
 Input.propTypes = {
@@ -31,7 +30,6 @@ Input.propTypes = {
     touched: PropTypes.bool,
     error: PropTypes.string,
   }).isRequired,
-  placeholder: PropTypes.string,
 };
 
 export default Input;
