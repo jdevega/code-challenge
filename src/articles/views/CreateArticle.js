@@ -6,6 +6,11 @@ import { createArticle } from '../actions';
 
 const CreateArticleForm = withForm({
   title: 'Create Article',
+  options: {
+    initialValues: {
+      published: false,
+    },
+  },
   actions: { createArticle },
   onSubmit: (values, dispatch, props) => props.createArticle(values),
 })(ArticleForm);
