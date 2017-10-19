@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { Menu } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
@@ -10,24 +10,31 @@ import store, { history } from './store';
 import AppLayout from './ui/layout/App';
 import Articles from './ui/screens/Articles';
 import Article from './ui/screens/Article';
-import EditArticle from './ui/screens/EditArticle';
-import enhanceArticles from './articles/enhanceArticles';
-import enhanceArticle from './articles/enhanceArticle';
-import withHomeLink from './links/withHomeLink';
+import enhanceArticles from './articles/enhancers/enhanceArticles';
+import enhanceArticle from './articles/enhancers/enhanceArticle';
+import EditArticle from './articles/views/EditArticle';
+import CreateArticle from './articles/views/CreateArticle';
+import Notifications from './notifications/Notifications';
 
 const EnhancedArticles = enhanceArticles(Articles);
 const EnhancedArticle = enhanceArticle(Article);
-const HomeLink = withHomeLink(Menu.Item);
 const menuItems = [
-  <HomeLink as="a" key="Articles">Articles</HomeLink>,
+  <Menu.Item key="Articles">
+    <Link to="/">Articles</Link>
+  </Menu.Item>,
+  <Menu.Item key="CreateArticle">
+    <Link to="/create">New Article</Link>
+  </Menu.Item>,
 ];
 
 const router = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <AppLayout menuItems={menuItems}>
+        <Notifications />
         <Route exact path="/" component={EnhancedArticles} />
         <Switch>
+          <Route exact path="/create" component={CreateArticle} />
           <Route exact path="/edit/:id" component={EditArticle} />
           <Route exact path="/:id" component={EnhancedArticle} />
         </Switch>

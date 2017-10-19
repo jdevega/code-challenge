@@ -16,8 +16,7 @@ describe('Articles - Selectors', () => {
   };
 
   const initialMockState = {
-    articles: {
-    },
+    articles: {},
   };
 
   it('getAll(state) returns all articles at list key as an object', () => {

@@ -1,4 +1,12 @@
-import { GraphQLBoolean, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLSchema } from 'graphql';
+import {
+  GraphQLInputObjectType,
+  GraphQLNonNull,
+  GraphQLBoolean,
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLList,
+  GraphQLSchema,
+} from 'graphql';
 import db from './db';
 
 const articleType = new GraphQLObjectType({
@@ -29,6 +37,19 @@ const articleType = new GraphQLObjectType({
   }),
 });
 
+const articleInputType = new GraphQLInputObjectType({
+  name: 'ArticleInput',
+  fields: () => ({
+    id: { type: GraphQLString },
+    author: { type: new GraphQLNonNull(GraphQLString) },
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    content: { type: GraphQLString },
+    excerpt: { type: GraphQLString },
+    tags: { type: new GraphQLList(GraphQLString) },
+    published: { type: GraphQLBoolean, default: false },
+  }),
+});
+
 const Query = new GraphQLObjectType({
   name: 'Query',
   description: 'This is a root query',
@@ -54,8 +75,43 @@ const Query = new GraphQLObjectType({
   }),
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  description: 'Mutations you can exec',
+  fields: () => ({
+    createArticle: {
+      type: articleType,
+      description: 'Create a new article',
+      args: {
+        article: { type: articleInputType },
+      },
+      resolve: (value, { article }) => db.Article.create(article),
+    },
+    updateArticle: {
+      type: articleType,
+      description: 'Update a new article',
+      args: {
+        article: { type: articleInputType },
+      },
+      resolve: (value, { article }) =>
+        db.Article.findOneAndUpdate({ _id: article.id }, article, { new: true })
+        .then(doc => doc),
+    },
+    deleteArticle: {
+      type: articleType,
+      description: 'Delete an article with id .',
+      args: {
+        id: { type: GraphQLString },
+      },
+      resolve: (value, { id }) =>
+        db.Article.remove({ _id: id }).then(() => ({ id })),
+    },
+  }),
+});
+
 const Schema = new GraphQLSchema({
   query: Query,
+  mutation: Mutation,
 });
 
 export default Schema;

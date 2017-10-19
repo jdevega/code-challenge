@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card } from 'semantic-ui-react';
 
 const CardGroup = props =>
-  <Card.Group itemsPerRow={props.itemsPerRow}>{props.children}</Card.Group>;
+  <Card.Group stackable itemsPerRow={props.itemsPerRow}>{props.children}</Card.Group>;
 
 CardGroup.defaultProps = {
   itemsPerRow: 3,

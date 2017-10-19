@@ -1,9 +1,9 @@
 import React from 'react';
 import { compose, lifecycle, branch, renderComponent, mapProps } from 'recompose';
 import { connect } from 'react-redux';
-import { getAll, findAll } from './';
-import Loading from '../ui/common/Loading';
-import Card from '../ui/card/Card';
+import { getAll, findAll } from '../';
+import Loading from '../../ui/common/Loading';
+import Card from '../../ui/card/Card';
 import cardWithLinks from './cardWithLinks';
 
 const CardWithLinks = cardWithLinks(Card);

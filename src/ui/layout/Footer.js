@@ -1,21 +1,16 @@
 import React from 'react';
-import { Segment, Container, Image } from 'semantic-ui-react';
+import { Grid, Image } from 'semantic-ui-react';
 import Logo from '../../../public/logo.png';
 
-const Footer = () => <Segment
-  color="blue"
-  inverted
-  vertical
-  style={{ margin: '1em 0em 0em', padding: '1em 0em' }}
->
-  <Container textAlign="center">
+const Footer = () =>
+  <Grid.Row centered color="blue" style={{ height: '40px' }}>
     <Image
       centered
       size="mini"
       src={Logo}
     />
-  </Container>
-</Segment>;
+  </Grid.Row>
+;
 
 
 export default Footer;
