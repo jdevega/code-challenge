@@ -1,20 +1,26 @@
 import React from 'react';
 import { Divider, Header } from 'semantic-ui-react';
 import { success, error } from 'react-notification-system-redux';
+import { compose } from 'recompose';
+import { graphql } from 'react-apollo';
 import ArticleForm from '../form/ArticleForm';
 import withForm from '../../forms/withForm';
-import { createArticle, goToArticles } from '../actions';
+import { goToArticles, parseValues } from '../actions';
+import { CREATE_ARTICLE_MUTATION } from '../queries';
 
-const CreateArticleForm = withForm({
-  options: {
-    initialValues: {
-      published: false,
+
+const CreateArticleForm = compose(
+  graphql(CREATE_ARTICLE_MUTATION),
+  withForm({
+    options: {
+      initialValues: {
+        published: false,
+      },
     },
-  },
-  actions: { createArticle, success, error, goToArticles },
-  onSubmit: (values, dispatch, props) => {
-    props
-      .createArticle(values)
+    actions: { success, error, goToArticles },
+    onSubmit: (values, dispatch, props) => {
+      props
+      .mutate({ variables: { article: parseValues(values) } })
       .then(() =>
         props.success({
           message: `${values.title} created successfully`,
@@ -30,8 +36,8 @@ const CreateArticleForm = withForm({
           autoDismiss: 5,
         }),
       );
-  },
-})(ArticleForm);
+    },
+  }))(ArticleForm);
 
 const CreateArticle = () => (
   <div>

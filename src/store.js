@@ -4,10 +4,11 @@ import createHistory from 'history/createBrowserHistory';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from './rootReducer';
+import client from './core/apollo/client';
 
 export const history = createHistory();
 const router = routerMiddleware(history);
-const middlewares = applyMiddleware(router, thunk);
+const middlewares = applyMiddleware(client.middleware(), router, thunk);
 
 const _middlewares =
   process.env.NODE_ENV === 'development'

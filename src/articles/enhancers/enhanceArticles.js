@@ -1,5 +1,5 @@
 import React from 'react';
-import { compose, branch, renderComponent, mapProps } from 'recompose';
+import { compose, branch, renderComponent } from 'recompose';
 import { graphql } from 'react-apollo';
 import { ARTICLES_QUERY } from '../queries';
 import Loading from '../../ui/common/Loading';

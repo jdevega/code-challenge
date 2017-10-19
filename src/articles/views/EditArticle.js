@@ -3,25 +3,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Header } from 'semantic-ui-react';
 import { success, error } from 'react-notification-system-redux';
+import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import ArticleForm from '../form/ArticleForm';
 import withForm from '../../forms/withForm';
-import { editArticle, findOne, goToArticles } from '../actions';
-import { getOne } from '../selectors';
+import { goToArticles, parseValues } from '../actions';
+import { ARTICLE_QUERY, UPDATE_ARTICLE_MUTATION } from '../queries';
 
 const EditArticleForm = compose(
+  graphql(ARTICLE_QUERY, {
+    options: props => ({
+      fetchPolicy: 'cache-and-network',
+      variables: {
+        id: props.id,
+      },
+    }),
+    props: ({ data }) => ({ initialValues: data.article }),
+  }),
+  graphql(UPDATE_ARTICLE_MUTATION),
   withForm({
-    selector: state => {
-      const article = getOne(state);
-      return { initialValues: article };
-    },
     options: {
       enableReinitialize: true,
     },
-    actions: { editArticle, loader: findOne, success, error, goToArticles },
+    actions: { success, error, goToArticles },
     onSubmit: (values, dispatch, props) => {
       props
-        .editArticle(values)
+        .mutate({ variables: { article: parseValues(values) } })
         .then(() =>
           props.success({
             message: `${values.title} updated successfully`,

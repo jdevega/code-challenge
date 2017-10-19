@@ -10,10 +10,10 @@ import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { success } from 'react-notification-system-redux';
-import { deleteArticle, goToArticles } from '../';
+import { goToArticles } from '../';
 import Loading from '../../ui/common/Loading';
 import { editArticlePath } from '../constants';
-import { ARTICLE_QUERY } from '../queries';
+import { ARTICLE_QUERY, DELETE_ARTICLE_MUTATION } from '../queries';
 
 const enhanceArticle = compose(
   withRouter,
@@ -26,6 +26,11 @@ const enhanceArticle = compose(
     }),
     props: ({ data }) => ({ ...data.article }),
   }),
+  graphql(DELETE_ARTICLE_MUTATION, {
+    options: props => ({
+      variables: { id: props.match.params.id },
+    }),
+  }),
   withStateHandlers(
     { modalOpen: false },
     {
@@ -33,18 +38,13 @@ const enhanceArticle = compose(
       closeModal: () => () => ({ modalOpen: false }),
     },
   ),
-  connect(null, { deleteArticle, success, goToArticles }),
-  // lifecycle({
-  //   componentWillMount() {
-  //     this.props.findOne(this.props.match.params.id);
-  //   },
-  // }),
+  connect(null, { success, goToArticles }),
   branch(props => !props.title, renderComponent(Loading)),
   withHandlers({
     onEditClick: props => () => props.history.push(editArticlePath(props.match.params.id)),
     onDeleteClick: props => () => props.openModal(),
     onConfirmDeleteClick: props => () =>
-      props.deleteArticle(props.match.params.id).then(() => {
+      props.mutate().then(() => {
         props.closeModal();
         props.goToArticles();
         props.success({

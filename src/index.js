@@ -5,7 +5,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { Menu } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
-import { Provider as ReduxProvider } from 'react-redux';
+// import { Provider as ReduxProvider } from 'react-redux';
 import ApolloProvider from './core/apollo/Provider';
 
 import store, { history } from './store';
@@ -30,21 +30,19 @@ const menuItems = [
 ];
 
 const router = (
-  <ReduxProvider store={store}>
-    <ApolloProvider>
-      <ConnectedRouter history={history}>
-        <AppLayout menuItems={menuItems}>
-          <Notifications />
-          <Route exact path="/" component={EnhancedArticles} />
-          <Switch>
-            <Route exact path="/create" component={CreateArticle} />
-            <Route exact path="/edit/:id" component={EditArticle} />
-            <Route exact path="/:id" component={EnhancedArticle} />
-          </Switch>
-        </AppLayout>
-      </ConnectedRouter>
-    </ApolloProvider>
-  </ReduxProvider>
+  <ApolloProvider store={store}>
+    <ConnectedRouter history={history}>
+      <AppLayout menuItems={menuItems}>
+        <Notifications />
+        <Route exact path="/" component={EnhancedArticles} />
+        <Switch>
+          <Route exact path="/create" component={CreateArticle} />
+          <Route exact path="/edit/:id" component={EditArticle} />
+          <Route exact path="/:id" component={EnhancedArticle} />
+        </Switch>
+      </AppLayout>
+    </ConnectedRouter>
+  </ApolloProvider>
 );
 
 ReactDOM.render(router, document.getElementById('root'));

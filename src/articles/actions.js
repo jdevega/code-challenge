@@ -1,7 +1,9 @@
 import { push } from 'react-router-redux';
+import { pick } from 'ramda';
 import * as Queries from './queries';
 import * as ActionTypes from './actionTypes';
 import request from '../request';
+import { ARTICLE_FIELDS } from './constants';
 
 export const setAll = articles => ({
   type: ActionTypes.SET_ALL,
@@ -38,11 +40,11 @@ export const findOne = id => dispatch => {
 };
 
 const trimElements = values => (values ? values.map(value => value.trim()) : undefined);
-const parseValues = values => ({
+export const parseValues = values => pick(ARTICLE_FIELDS, ({
   ...values,
   excerpt: values.content.slice(0, 350),
   tags: trimElements(values.tags),
-});
+}));
 
 export const createArticle = values => dispatch => {
   const article = parseValues(values);

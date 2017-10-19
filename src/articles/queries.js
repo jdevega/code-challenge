@@ -24,7 +24,7 @@ export const ARTICLE_QUERY = gql`
   }
 `;
 
-export const CREATE_ARTICLE_MUTATION = `
+export const CREATE_ARTICLE_MUTATION = gql`
   mutation Create($article:ArticleInput!) {
     createArticle(article:$article) {
       id
@@ -38,7 +38,7 @@ export const CREATE_ARTICLE_MUTATION = `
   }
 `;
 
-export const UPDATE_ARTICLE_MUTATION = `
+export const UPDATE_ARTICLE_MUTATION = gql`
 mutation Update($article:ArticleInput!) {
   updateArticle(article:$article) {
     id
@@ -52,7 +52,7 @@ mutation Update($article:ArticleInput!) {
 }
 `;
 
-export const DELETE_ARTICLE_MUTATION = `
+export const DELETE_ARTICLE_MUTATION = gql`
 mutation Delete($id:String!) {
   deleteArticle(id:$id) {
     id
