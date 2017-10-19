@@ -43,16 +43,18 @@ const CreateArticle = props => (
       normalize={value => value.split(',')}
     />
     <ConnectedCheckbox name="published" label="Published" />
-    <SubmitButton onSubmit={props.handleSubmit} />
+    <SubmitButton onSubmit={props.handleSubmit} submitText={props.submitText} />
   </Form>
 );
 
 CreateArticle.defaultProps = {
   handleSubmit: e => e.preventDefault(),
+  submitText: 'Submit',
 };
 
 CreateArticle.propTypes = {
   handleSubmit: PropTypes.func,
+  submitText: PropTypes.string,
 };
 
 export default CreateArticle;

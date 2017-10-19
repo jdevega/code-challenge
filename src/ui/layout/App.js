@@ -11,10 +11,14 @@ const App = props => (
     </Grid.Row>
     <Grid.Row>
       <div
-        style={{ width: '90%',
+        style={{
+          width: '90%',
           marginTop: '3em',
-          marginLeft: '5%' }}
-      >{props.children}</div>
+          marginLeft: '5%',
+        }}
+      >
+        {props.children}
+      </div>
     </Grid.Row>
     <Footer />
   </Grid>

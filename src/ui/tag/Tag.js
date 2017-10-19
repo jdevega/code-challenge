@@ -4,12 +4,14 @@ import { Label } from 'semantic-ui-react';
 import { COLORS } from '../constants';
 
 const Tag = props => (
-  <Label tag color={props.color}>{props.text}</Label>
+  <Label tag color={props.color}>
+    {props.text}
+  </Label>
 );
 
 Tag.defaultProps = {
   text: 'tag name',
-  color: 'blue',
+  color: 'grey',
 };
 
 Tag.propTypes = {

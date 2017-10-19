@@ -1,3 +1,4 @@
+import { push } from 'react-router-redux';
 import * as Queries from './queries';
 import * as ActionTypes from './actionTypes';
 import request from '../request';
@@ -27,6 +28,7 @@ export const deleteOne = id => ({
   payload: id,
 });
 
+const goToArticles = () => push('/');
 
 export const findAll = () => dispatch => {
   request(Queries.ARTICLES_QUERY).then(response => dispatch(setAll(response)));
@@ -34,7 +36,6 @@ export const findAll = () => dispatch => {
 export const findOne = id => dispatch => {
   request(Queries.ARTICLE_QUERY, { id }).then(response => dispatch(setOne(response)));
 };
-
 
 const trimElements = values => (values ? values.map(value => value.trim()) : undefined);
 const parseValues = values => ({
@@ -46,15 +47,19 @@ const parseValues = values => ({
 export const createArticle = values => dispatch => {
   const article = parseValues(values);
   request(Queries.CREATE_ARTICLE_MUTATION, { article })
-    .then(response => dispatch(addOne(response)));
+    .then(response => dispatch(addOne(response)))
+    .then(() => dispatch(goToArticles()));
 };
 
 export const editArticle = values => dispatch => {
   const article = parseValues(values);
   request(Queries.UPDATE_ARTICLE_MUTATION, { article })
-    .then(response => dispatch(updateOne(response)));
+    .then(response => dispatch(updateOne(response)))
+    .then(() => dispatch(goToArticles()));
 };
 
 export const deleteArticle = id => dispatch => {
-  request(Queries.DELETE_ARTICLE_MUTATION, { id }).then(() => dispatch(deleteOne(id)));
+  request(Queries.DELETE_ARTICLE_MUTATION, { id })
+    .then(() => dispatch(deleteOne(id)))
+    .then(() => dispatch(goToArticles()));
 };

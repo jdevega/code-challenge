@@ -5,7 +5,6 @@ import withForm from '../../forms/withForm';
 import { createArticle } from '../actions';
 
 const CreateArticleForm = withForm({
-  title: 'Create Article',
   options: {
     initialValues: {
       published: false,
@@ -19,7 +18,7 @@ const CreateArticle = () => (
   <div>
     <Header as="h2">Create Article</Header>
     <Divider />
-    <CreateArticleForm />
+    <CreateArticleForm submitText="save" />
   </div>
 );
 

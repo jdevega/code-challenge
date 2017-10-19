@@ -26,7 +26,7 @@ const EditArticle = props => (
   <div>
     <Header as="h2">Edit Article</Header>
     <Divider />
-    <EditArticleForm id={props.match.params.id} />
+    <EditArticleForm id={props.match.params.id} submitText="Update" />
   </div>
 );
 
