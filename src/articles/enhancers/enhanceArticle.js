@@ -1,19 +1,31 @@
 import {
   compose,
-  lifecycle,
+  // lifecycle,
   branch,
   renderComponent,
   withStateHandlers,
   withHandlers,
 } from 'recompose';
+import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { success } from 'react-notification-system-redux';
-import { getOne, findOne, deleteArticle, goToArticles } from '../';
+import { deleteArticle, goToArticles } from '../';
 import Loading from '../../ui/common/Loading';
 import { editArticlePath } from '../constants';
+import { ARTICLE_QUERY } from '../queries';
 
 const enhanceArticle = compose(
+  withRouter,
+  graphql(ARTICLE_QUERY, {
+    options: props => ({
+      fetchPolicy: 'cache-and-network',
+      variables: {
+        id: props.match.params.id,
+      },
+    }),
+    props: ({ data }) => ({ ...data.article }),
+  }),
   withStateHandlers(
     { modalOpen: false },
     {
@@ -21,13 +33,12 @@ const enhanceArticle = compose(
       closeModal: () => () => ({ modalOpen: false }),
     },
   ),
-  withRouter,
-  connect(getOne, { findOne, deleteArticle, success, goToArticles }),
-  lifecycle({
-    componentWillMount() {
-      this.props.findOne(this.props.match.params.id);
-    },
-  }),
+  connect(null, { deleteArticle, success, goToArticles }),
+  // lifecycle({
+  //   componentWillMount() {
+  //     this.props.findOne(this.props.match.params.id);
+  //   },
+  // }),
   branch(props => !props.title, renderComponent(Loading)),
   withHandlers({
     onEditClick: props => () => props.history.push(editArticlePath(props.match.params.id)),

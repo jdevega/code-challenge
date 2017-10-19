@@ -1,15 +1,19 @@
-export const ARTICLES_QUERY = `{
-  articles {
-    author
-    excerpt
-    id
-    title
-  }
-}`;
+import { gql } from 'react-apollo';
 
-export const ARTICLE_QUERY = `
-  query Article($id:String!){
-    article(id:$id) {
+export const ARTICLES_QUERY = gql`
+  {
+    articles {
+      author
+      excerpt
+      id
+      title
+    }
+  }
+`;
+
+export const ARTICLE_QUERY = gql`
+  query Article($id: String!) {
+    article(id: $id) {
       id
       author
       content
@@ -17,7 +21,8 @@ export const ARTICLE_QUERY = `
       tags
       title
     }
-  }`;
+  }
+`;
 
 export const CREATE_ARTICLE_MUTATION = `
   mutation Create($article:ArticleInput!) {

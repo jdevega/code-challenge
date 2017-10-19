@@ -22,6 +22,8 @@ services:
       dockerfile: ./dockerfiles/node/Dockerfile
     volumes:
       - .:/var/app/
+    environment:
+      - GRAPHQL_URI=http://server:4000/graphql
     working_dir: /var/app
     command: bash -c "yarn && yarn start"
     links:
