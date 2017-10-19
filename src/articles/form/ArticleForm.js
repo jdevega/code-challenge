@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { Form } from 'semantic-ui-react';
 import SubmitButton from '../../ui/form/SubmitButton';
 import withReduxField from '../../forms/withReduxField';
+import withBooleanValue from '../../forms/withBooleanValue';
 import Input from '../../ui/form/Input';
 import TextArea from '../../ui/form/TextArea';
 import Checkbox from '../../ui/form/Checkbox';
 
 const ConnectedInput = withReduxField(Input);
 const ConnectedTextArea = withReduxField(TextArea);
-const ConnectedCheckbox = withReduxField(Checkbox);
+const ConnectedCheckbox = withReduxField(withBooleanValue(Checkbox));
 
 const CreateArticle = props => (
   <Form onSubmit={props.handleSubmit}>
