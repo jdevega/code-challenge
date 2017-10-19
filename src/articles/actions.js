@@ -23,12 +23,12 @@ export const updateOne = article => ({
   payload: article,
 });
 
-export const deleteOne = id => ({
+export const deleteOne = article => ({
   type: ActionTypes.DELETE_ONE,
-  payload: id,
+  payload: article,
 });
 
-const goToArticles = () => push('/');
+export const goToArticles = () => dispatch => dispatch(push('/'));
 
 export const findAll = () => dispatch => {
   request(Queries.ARTICLES_QUERY).then(response => dispatch(setAll(response)));
@@ -46,20 +46,17 @@ const parseValues = values => ({
 
 export const createArticle = values => dispatch => {
   const article = parseValues(values);
-  request(Queries.CREATE_ARTICLE_MUTATION, { article })
-    .then(response => dispatch(addOne(response)))
-    .then(() => dispatch(goToArticles()));
+  return request(Queries.CREATE_ARTICLE_MUTATION, { article }).then(response =>
+    dispatch(addOne(response)),
+  );
 };
 
 export const editArticle = values => dispatch => {
   const article = parseValues(values);
-  request(Queries.UPDATE_ARTICLE_MUTATION, { article })
-    .then(response => dispatch(updateOne(response)))
-    .then(() => dispatch(goToArticles()));
+  return request(Queries.UPDATE_ARTICLE_MUTATION, { article }).then(response =>
+    dispatch(updateOne(response)),
+  );
 };
 
-export const deleteArticle = id => dispatch => {
-  request(Queries.DELETE_ARTICLE_MUTATION, { id })
-    .then(() => dispatch(deleteOne(id)))
-    .then(() => dispatch(goToArticles()));
-};
+export const deleteArticle = id => dispatch =>
+  request(Queries.DELETE_ARTICLE_MUTATION, { id }).then(response => dispatch(deleteOne(response)));

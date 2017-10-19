@@ -1,7 +1,6 @@
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-// import { is } from 'ramda';
 
 const withForm = (params = {}) =>
   compose(

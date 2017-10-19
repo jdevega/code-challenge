@@ -2,10 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Header } from 'semantic-ui-react';
+import { success, error } from 'react-notification-system-redux';
 import { compose } from 'recompose';
 import ArticleForm from '../form/ArticleForm';
 import withForm from '../../forms/withForm';
-import { editArticle, findOne } from '../actions';
+import { editArticle, findOne, goToArticles } from '../actions';
 import { getOne } from '../selectors';
 
 const EditArticleForm = compose(
@@ -17,8 +18,26 @@ const EditArticleForm = compose(
     options: {
       enableReinitialize: true,
     },
-    actions: { editArticle, loader: findOne },
-    onSubmit: (values, dispatch, props) => props.editArticle(values),
+    actions: { editArticle, loader: findOne, success, error, goToArticles },
+    onSubmit: (values, dispatch, props) => {
+      props
+        .editArticle(values)
+        .then(() =>
+          props.success({
+            message: `${values.title} updated successfully`,
+            position: 'tr',
+            autoDismiss: 5,
+          }),
+        )
+        .then(() => props.goToArticles())
+        .catch(() =>
+          props.error({
+            message: `${values.title} cannot be updated`,
+            position: 'tr',
+            autoDismiss: 5,
+          }),
+        );
+    },
   }),
 )(ArticleForm);
 

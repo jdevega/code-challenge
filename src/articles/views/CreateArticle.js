@@ -1,8 +1,9 @@
 import React from 'react';
 import { Divider, Header } from 'semantic-ui-react';
+import { success, error } from 'react-notification-system-redux';
 import ArticleForm from '../form/ArticleForm';
 import withForm from '../../forms/withForm';
-import { createArticle } from '../actions';
+import { createArticle, goToArticles } from '../actions';
 
 const CreateArticleForm = withForm({
   options: {
@@ -10,8 +11,26 @@ const CreateArticleForm = withForm({
       published: false,
     },
   },
-  actions: { createArticle },
-  onSubmit: (values, dispatch, props) => props.createArticle(values),
+  actions: { createArticle, success, error, goToArticles },
+  onSubmit: (values, dispatch, props) => {
+    props
+      .createArticle(values)
+      .then(() =>
+        props.success({
+          message: `${values.title} created successfully`,
+          position: 'tr',
+          autoDismiss: 5,
+        }),
+      )
+      .then(() => props.goToArticles())
+      .catch(() =>
+        props.error({
+          message: `${values.title} cannot be created`,
+          position: 'tr',
+          autoDismiss: 5,
+        }),
+      );
+  },
 })(ArticleForm);
 
 const CreateArticle = () => (

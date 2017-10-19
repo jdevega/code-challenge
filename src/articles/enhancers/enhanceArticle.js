@@ -8,7 +8,8 @@ import {
 } from 'recompose';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getOne, findOne, deleteArticle } from '../';
+import { success } from 'react-notification-system-redux';
+import { getOne, findOne, deleteArticle, goToArticles } from '../';
 import Loading from '../../ui/common/Loading';
 import { editArticlePath } from '../constants';
 
@@ -21,7 +22,7 @@ const enhanceArticle = compose(
     },
   ),
   withRouter,
-  connect(getOne, { findOne, deleteArticle }),
+  connect(getOne, { findOne, deleteArticle, success, goToArticles }),
   lifecycle({
     componentWillMount() {
       this.props.findOne(this.props.match.params.id);
@@ -34,12 +35,16 @@ const enhanceArticle = compose(
     onConfirmDeleteClick: props => () =>
       props.deleteArticle(props.match.params.id).then(() => {
         props.closeModal();
-        props.notifications.addNotification({
+        props.goToArticles();
+        props.success({
           message: `${props.title} removed successfully`,
-          level: 'success',
+          position: 'tr',
+          autoDismiss: 5,
         });
       }),
-    onCancelDeleteClick: props => () => props.closeModal(),
+    onCancelDeleteClick: props => () => {
+      props.closeModal();
+    },
   }),
 );
 

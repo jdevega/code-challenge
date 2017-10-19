@@ -14,6 +14,7 @@ import enhanceArticles from './articles/enhancers/enhanceArticles';
 import enhanceArticle from './articles/enhancers/enhanceArticle';
 import EditArticle from './articles/views/EditArticle';
 import CreateArticle from './articles/views/CreateArticle';
+import Notifications from './notifications/Notifications';
 
 const EnhancedArticles = enhanceArticles(Articles);
 const EnhancedArticle = enhanceArticle(Article);
@@ -30,6 +31,7 @@ const router = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <AppLayout menuItems={menuItems}>
+        <Notifications />
         <Route exact path="/" component={EnhancedArticles} />
         <Switch>
           <Route exact path="/create" component={CreateArticle} />

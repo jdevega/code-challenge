@@ -49,7 +49,7 @@ mutation Update($article:ArticleInput!) {
 
 export const DELETE_ARTICLE_MUTATION = `
 mutation Delete($id:String!) {
-  deleleteArticle(id:$article) {
+  deleteArticle(id:$id) {
     id
   }
 }
