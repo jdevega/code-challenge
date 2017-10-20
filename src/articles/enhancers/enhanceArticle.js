@@ -10,7 +10,7 @@ import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { success } from 'react-notification-system-redux';
-import { goToArticles } from '../';
+import { goToArticles } from '../actions';
 import Loading from '../../ui/common/Loading';
 import { editArticlePath } from '../constants';
 import { ARTICLE_QUERY, DELETE_ARTICLE_MUTATION } from '../queries';
