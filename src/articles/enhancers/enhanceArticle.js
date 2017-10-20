@@ -19,7 +19,7 @@ const enhanceArticle = compose(
   withRouter,
   graphql(ARTICLE_QUERY, {
     options: props => ({
-      fetchPolicy: 'cache-and-network',
+      // fetchPolicy: 'cache-and-network',
       variables: {
         id: props.match.params.id,
       },

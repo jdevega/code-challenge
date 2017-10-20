@@ -13,7 +13,6 @@ import { ARTICLE_QUERY, UPDATE_ARTICLE_MUTATION } from '../queries';
 const EditArticleForm = compose(
   graphql(ARTICLE_QUERY, {
     options: props => ({
-      fetchPolicy: 'cache-and-network',
       variables: {
         id: props.id,
       },
@@ -28,7 +27,9 @@ const EditArticleForm = compose(
     actions: { success, error, goToArticles },
     onSubmit: (values, dispatch, props) => {
       props
-        .mutate({ variables: { article: parseValues(values) } })
+        .mutate({
+          variables: { article: parseValues(values) },
+        })
         .then(() =>
           props.success({
             message: `${values.title} updated successfully`,

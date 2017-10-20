@@ -8,7 +8,6 @@ import withForm from '../../forms/withForm';
 import { goToArticles, parseValues } from '../actions';
 import { CREATE_ARTICLE_MUTATION } from '../queries';
 
-
 const CreateArticleForm = compose(
   graphql(CREATE_ARTICLE_MUTATION),
   withForm({
@@ -20,24 +19,27 @@ const CreateArticleForm = compose(
     actions: { success, error, goToArticles },
     onSubmit: (values, dispatch, props) => {
       props
-      .mutate({ variables: { article: parseValues(values) } })
-      .then(() =>
-        props.success({
-          message: `${values.title} created successfully`,
-          position: 'tr',
-          autoDismiss: 5,
-        }),
-      )
-      .then(() => props.goToArticles())
-      .catch(() =>
-        props.error({
-          message: `${values.title} cannot be created`,
-          position: 'tr',
-          autoDismiss: 5,
-        }),
-      );
+        .mutate({
+          variables: { article: parseValues(values) },
+        })
+        .then(() =>
+          props.success({
+            message: `${values.title} created successfully`,
+            position: 'tr',
+            autoDismiss: 5,
+          }),
+        )
+        .then(() => props.goToArticles())
+        .catch(() =>
+          props.error({
+            message: `${values.title} cannot be created`,
+            position: 'tr',
+            autoDismiss: 5,
+          }),
+        );
     },
-  }))(ArticleForm);
+  }),
+)(ArticleForm);
 
 const CreateArticle = () => (
   <div>
