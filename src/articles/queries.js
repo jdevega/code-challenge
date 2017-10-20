@@ -1,7 +1,7 @@
 import { gql } from 'react-apollo';
 
 export const ARTICLES_QUERY = gql`
-  {
+  query Articles {
     articles {
       author
       excerpt
@@ -25,8 +25,8 @@ export const ARTICLE_QUERY = gql`
 `;
 
 export const CREATE_ARTICLE_MUTATION = gql`
-  mutation Create($article:ArticleInput!) {
-    createArticle(article:$article) {
+  mutation Create($article: ArticleInput!) {
+    createArticle(article: $article) {
       id
       author
       title
@@ -39,23 +39,23 @@ export const CREATE_ARTICLE_MUTATION = gql`
 `;
 
 export const UPDATE_ARTICLE_MUTATION = gql`
-mutation Update($article:ArticleInput!) {
-  updateArticle(article:$article) {
-    id
-    author
-    title
-    content
-    excerpt
-    tags
-    published
+  mutation Update($article: ArticleInput!) {
+    updateArticle(article: $article) {
+      id
+      author
+      title
+      content
+      excerpt
+      tags
+      published
+    }
   }
-}
 `;
 
 export const DELETE_ARTICLE_MUTATION = gql`
-mutation Delete($id:String!) {
-  deleteArticle(id:$id) {
-    id
+  mutation Delete($id: String!) {
+    deleteArticle(id: $id) {
+      id
+    }
   }
-}
 `;
