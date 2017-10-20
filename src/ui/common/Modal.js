@@ -27,6 +27,9 @@ Modal.defaultProps = {
   header: 'Modal header',
   open: true,
   size: 'mini',
+  onCancelClick: e => e.preventDefault(),
+  onClose: e => e.preventDefault(),
+  onConfirmClick: e => e.preventDefault(),
 };
 
 Modal.propTypes = {

@@ -61,6 +61,11 @@ Article.defaultProps = {
     'Curabitur sit amet diam in ex condimentum tincidunt quis ac justo. Nam posuere velit non urna efficitur, eget placerat neque varius. Suspendisse aliquam diam quis egestas rhoncus. Praesent tempor leo id tellus molestie finibus. Cras pretium volutpat metus et malesuada. Aliquam a ullamcorper leo, ut malesuada dolor. Pellentesque hendrerit imperdiet blandit. Duis neque erat, gravida eu lacus a, vulputate viverra ipsum. Integer arcu eros, pulvinar sit amet mi a, fermentum placerat nibh. Quisque at risus vulputate, aliquam dui sed, scelerisque libero. Donec eget ultricies velit. Proin ullamcorper consectetur sapien, non finibus augue facilisis eu.',
   published: false,
   modalOpen: false,
+  closeModal: e => e.preventDefault(),
+  onCancelDeleteClick: e => e.preventDefault(),
+  onConfirmDeleteClick: e => e.preventDefault(),
+  onDeleteClick: e => e.preventDefault(),
+  onEditClick: e => e.preventDefault(),
 };
 
 Article.propTypes = {
